@@ -48,7 +48,7 @@ iptables_{{ chain_name }}_ipv6_policy:
 {%- endif %}
 
 {%- for service_name, service in pillar.items() %}
-{%- if service.get('_support', {}).get('iptables', {}).get('enabled', False) %}
+{%- if service is mapping and service.get('_support', {}).get('iptables', {}).get('enabled', False) %}
 
 {%- set grains_fragment_file = service_name+'/meta/iptables.yml' %}
 {%- macro load_grains_file() %}{% include grains_fragment_file %}{% endmacro %}
